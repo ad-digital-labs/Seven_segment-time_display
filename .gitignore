@@ -1,0 +1,6 @@
+# Ignore the display guide text file which contains instructions for setting up the display. 
+display_guide.txt
+
+# Ignore the Visual Studio Code settings folder which may contain user-specific configurations. 
+.vscode/
+
