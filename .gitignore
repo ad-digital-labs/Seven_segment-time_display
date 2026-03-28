@@ -4,3 +4,6 @@ display_guide.txt
 # Ignore the Visual Studio Code settings folder which may contain user-specific configurations. 
 .vscode/
 
+# Ignore the build output directory which may contain compiled binaries and object files. 
+build/      
+a
