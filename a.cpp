@@ -1,3 +1,35 @@
+/**
+ * @file    a.cpp
+ * @brief   Seven-Segment Time Display — Terminal-based date/time renderer
+ *
+ * This program retrieves the current local date and time from the system clock
+ * and renders it to the terminal using ASCII art that mimics a classic
+ * seven-segment LED display. Each digit (0–9) and separator character
+ * (':', '-', '/', ' ') is mapped to a 3×3 character grid, and three output
+ * lines are composed to produce the final display.
+ *
+ * Supported characters:
+ *   Digits  : 0 1 2 3 4 5 6 7 8 9
+ *   Colon   : ':'  (time separator)
+ *   Dash    : '-'  (date-time separator)
+ *   Slash   : '/'  (date separator)
+ *   Space   : ' '  (blank segment)
+ *
+ * Error codes returned by display():
+ *   P_OK        ( 0)  — Success
+ *   P_ERR_RANGE (-5)  — Input string length out of valid range
+ *   P_ERR_VAL   (-10) — Input contains unsupported characters
+ *
+ * Build:
+ *   g++ -o seven_seg a.cpp
+ *
+ * Usage:
+ *   ./seven_seg
+ *
+ * @author  AD Digital Labs
+ * @see     https://github.com/ad-digital-labs/Seven_segment-time_display
+ */
+
 #define P_OK 0
 #define P_ERR_RANGE -5
 #define P_ERR_VAL -10
