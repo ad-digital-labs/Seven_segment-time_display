@@ -8,3 +8,6 @@ display_guide.txt
 build/      
 a
 
+# Ignore the key file which may contain sensitive information such as API keys or passwords.
+key01.txt
+
