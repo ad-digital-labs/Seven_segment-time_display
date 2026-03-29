@@ -7,12 +7,13 @@
 #include <cctype>
 #include <locale>
 #include <string>
+#include <time.h>
 
 
 using namespace std;
 
 
-std::string segment[13]
+std::string segment[14]
 {
     " _ | ||_|",
     "     |  |",
@@ -24,9 +25,11 @@ std::string segment[13]
     " _   |  |",
     " _ |_||_|",
     " _ |_|  |",
-    " *  *  * ",
-    "   ***   ",
-    "  * * *  "
+    "    *  * ",
+    "      ***",
+    "     * * ",
+    "         "
+
 };
 
 int display(std::string str)
@@ -45,7 +48,7 @@ int display(std::string str)
     std::string ln02="";
     std::string ln03="";
 
-    if(str.length()>1 && str.length()<15)
+    if(str.length()>1 && str.length()<20)
     {
         tcount=0;
 
@@ -53,7 +56,7 @@ int display(std::string str)
 
         for(i=0; i<str.length(); i++)
         {
-            if( std::isdigit(str[i])==true || str[i]==':' || str[i]=='-' || str[i]=='/' )
+            if( std::isdigit(str[i])==true || str[i]==':' || str[i]=='-' || str[i]=='/' || str[i]==' ')
             {
 
                 if(isdigit(str[i])==true)
@@ -70,6 +73,10 @@ int display(std::string str)
                 }else if(str[i]=='/')
                 {
                     x=12;
+
+                }else if(str[i]==' ')
+                {
+                    x=13;
 
                 };
 
@@ -96,7 +103,6 @@ int display(std::string str)
             ln03+=" ";
 
 
-
         };
 
 
@@ -116,52 +122,81 @@ int display(std::string str)
         };
 
 
-
-        
-
     }else
     {
         res=P_ERR_RANGE;
     };
-
-
-
-
-
-
-    res=P_OK;
 
     return res;
 
 };
 
 
+
+int display_time()
+{
+    int res;
+
+    int h;
+    int u;
+    int m;
+    int d;
+    int y;
+
+    std::string str01="";
+
+    time_t tm01;
+    tm *ctm01;
+
+    tm01=time(NULL);
+    ctm01=localtime(&tm01);
+
+    h=ctm01->tm_hour;
+    u=ctm01->tm_min;
+    m=ctm01->tm_mon;
+    d=ctm01->tm_mday;
+    y=ctm01->tm_year+1900;
+
+    str01=to_string(m) + "/" + to_string(d) + "/" + to_string(y)+" -";
+    str01+=to_string(h)+":"+to_string(u);
+
+
+    res=display(str01);
+
+
+    return res;
+
+
+};
+
+
+
+
 int main(int argc, char* argv[])
 {
 
-    string str;
-
     int result;
 
-    cout<<"Enter a string of digits (max 14 characters): ";
-    cin>>str;
+    cout<<endl<<endl;
 
-    result=display(str);
+    result=display_time();
 
     if(result!=P_OK)
     {
         if(result==P_ERR_RANGE)
         {
-            cout<<"Error: Input string length must be between 1 and 14 characters."<<endl;
+            cout<<"ERROR: Date values out of range."<<endl;
         }else if(result==P_ERR_VAL)
         {
-            cout<<"Error: Input string contains invalid characters. Only digits, ':', '-', and '/' are allowed."<<endl;
+            cout<<"Error: Time variiables not in digits."<<endl;
         }else
         {
-            cout<<"An unknown error occurred."<<endl;
+            cout<<"ERROR: Unexpected error occurred."<<endl;
         };
 
     };
+
+    cout<<endl<<endl;
 
 
     return 0;
