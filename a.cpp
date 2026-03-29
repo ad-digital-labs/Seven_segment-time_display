@@ -157,8 +157,32 @@ int display_time()
     d=ctm01->tm_mday;
     y=ctm01->tm_year+1900;
 
-    str01=to_string(m) + "/" + to_string(d) + "/" + to_string(y)+" -";
-    str01+=to_string(h)+":"+to_string(u);
+    if(m<10)
+    {
+        str01+="0";
+    };
+
+    str01+=to_string(m);
+    str01+="/";
+
+    if(d<10)
+    {
+        str01+="0";
+    };
+
+    str01+=to_string(d) + "/" + to_string(y)+" -";
+
+    if(h<10)
+    {
+        str01+="0";
+    };
+    str01+=to_string(h)+":";
+    
+    if(u<10)
+    {
+        str01+="0";
+    };
+    str01+=to_string(u);
 
 
     res=display(str01);
