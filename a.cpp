@@ -5,23 +5,28 @@
 
 #include <iostream>
 #include <cctype>
+#include <locale>
+#include <string>
 
 
 using namespace std;
 
 
-std::string segment[12]
+std::string segment[13]
 {
     " _ | ||_|",
-    " _  _||_ ",
+    "     |  |",
+    " _  _||_ ",    
     " _  _| _|",
-    " _  _| _|",
-    "   | |  |",
-    " _ | _| _|",
-    " _ | ||_|",
-    " _  _|  |",
-    " _ | ||_|",
-    " _ | _| _|"
+    "   |_|  |",
+    " _ |_  _|",
+    "   |_ |_|",
+    " _   |  |",
+    " _ |_||_|",
+    " _ |_|  |",
+    " *  *  * ",
+    "   ***   ",
+    "  * * *  "
 };
 
 int display(std::string str)
@@ -34,6 +39,8 @@ int display(std::string str)
     int j;
     int k;
 
+    int x;
+
     std::string ln01="";
     std::string ln02="";
     std::string ln03="";
@@ -42,20 +49,37 @@ int display(std::string str)
     {
         tcount=0;
 
-        j=0;
+
 
         for(i=0; i<str.length(); i++)
         {
-            if( std::isdigit(str[i]) || str[i]==':' || str[i]=='-' || str[i]=='/' )
+            if( std::isdigit(str[i])==true || str[i]==':' || str[i]=='-' || str[i]=='/' )
             {
-                j=i;
+
+                if(isdigit(str[i])==true)
+                {
+                    x=str[i]-'0';
+
+                }else if(str[i]==':')
+                {
+                    x=10;
+                }else if(str[i]=='-')
+                {
+                    x=11;
+
+                }else if(str[i]=='/')
+                {
+                    x=12;
+
+                };
+
 
                 k=0;
                 while(k<3)
                 {
-                    ln01+=segment[ str[j] ][k];
-                    ln02+=segment[ str[j] ][k+3];
-                    ln03+=segment[ str[j] ][k+6];
+                    ln01+=segment[ x ][k];
+                    ln02+=segment[ x ][k+3];
+                    ln03+=segment[ x ][k+6];
 
                     k++;
                 };
@@ -66,6 +90,10 @@ int display(std::string str)
                 tcount++;
 
             };
+
+            ln01+=" ";
+            ln02+=" ";
+            ln03+=" ";
 
 
 
